@@ -14,7 +14,7 @@ class ChatController extends Controller
             $chat[] = [
                 'id' => $row->id,
                 'chat' => $row->chat,
-                'fromMe' => $row->fromMe,
+                'fromMe' => $row->fromMe == 1 ? true : false,
                 'identity' => $row->identity,
                 'created_at' => $row->created_at->format('H:i'),
             ];
@@ -38,7 +38,7 @@ class ChatController extends Controller
                 'chat' => [
                     "id" => $chat->id,
                     "chat" => $chat->chat,
-                    "fromMe" => $chat->fromMe,
+                    "fromMe" => true,
                     "created_at" => $chat->created_at->format('H:i')
                 ],
                 'jawaban' => $this->jawaban($request->clientId, $request->message),
@@ -57,7 +57,7 @@ class ChatController extends Controller
         return [
             "id" => $chat->id,
             "chat" => $chat->chat,
-            "fromMe" => $chat->fromMe,
+            "fromMe" => false,
             "created_at" => $chat->created_at->format('H:i')
         ];
     }
