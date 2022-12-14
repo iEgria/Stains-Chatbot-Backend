@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\IntroController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -44,40 +45,25 @@ Route::prefix('message')->group(function () {
     Route::post('reply', function () {
         return json_encode(["status" => "success"]);
     });
-    Route::get('chat', function () {
-        return response()->json([
-            'data' => [
-                [
-                    'id' => 1,
-                    'chat' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ad vero aliquam, repellendus doloremque culpa officia dolorem. Maiores ducimus ad quibusdam quo eum temporibus eos, minus quisquam voluptatibus, ratione tenetur.',
-                    'fromMe' => true,
-                    'created_at' => '2022-01-05'
+    Route::post('send', function () {
+        return json_encode([
+            "status" => "success",
+            "data" => [
+                'chat' => [
+                    "id" => 1,
+                    "chat" => "Hai",
+                    "fromMe" => true,
+                    "created_at" => "2022-01-05"
                 ],
-                [
+                'jawaban' => [
                     'id' => 2,
-                    'chat' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ad vero aliquam, repellendus doloremque culpa officia dolorem. Maiores ducimus ad quibusdam quo eum temporibus eos, minus quisquam voluptatibus, ratione tenetur.',
+                    'chat' => 'kenal toh?',
                     'fromMe' => false,
                     'created_at' => '2022-01-05'
-                ],
-                [
-                    'id' => 3,
-                    'chat' => 'Anjay',
-                    'fromMe' => true,
-                    'created_at' => '2022-01-05'
-                ],
-                [
-                    'id' => 4,
-                    'chat' => 'Mabar',
-                    'fromMe' => false,
-                    'created_at' => '2022-01-05'
-                ],
-                [
-                    'id' => 1,
-                    'chat' => 'Hai',
-                    'fromMe' => true,
-                    'created_at' => '2022-01-05'
-                ],
+                ]
             ]
         ]);
     });
+    Route::post('send', [ChatController::class, 'store']);
+    Route::get('chat', [ChatController::class, 'show']);
 });
