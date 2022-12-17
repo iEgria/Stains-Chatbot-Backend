@@ -10,5 +10,5 @@ class Nasabah extends Model
     use HasFactory;
 
     protected $table = 'nasabah';
-    protected $fillable = ['identity', 'name'];
+    protected $fillable = ['name'];
 }

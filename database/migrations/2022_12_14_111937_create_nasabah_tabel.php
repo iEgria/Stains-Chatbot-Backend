@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('nasabah', function (Blueprint $table) {
             $table->id();
-            $table->string('identity');
             $table->string('name');
             $table->timestamps();
         });

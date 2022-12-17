@@ -9,6 +9,6 @@ class IntroController extends Controller
 {
     public function store(Request $request)
     {
-        return Nasabah::create(['identity' => $request->clientId, 'name' => $request->clientName]);
+        return Nasabah::create(['name' => $request->clientName]);
     }
 }

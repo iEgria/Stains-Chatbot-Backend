@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('chat', function (Blueprint $table) {
             $table->id();
-            $table->string('identity');
+            $table->unsignedBigInteger('nasabah_id');
             $table->string('chat');
             $table->boolean('fromMe');
             $table->timestamps();
+
+            $table->foreign('nasabah_id')->references('id')->on('nasabah');;
         });
     }
 
