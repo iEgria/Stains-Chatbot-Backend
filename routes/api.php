@@ -23,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('intro', [IntroController::class, 'store']);
 Route::prefix('message')->group(function () {
     Route::post('send', [ChatController::class, 'store']);
+    Route::get('send', [ChatController::class, 'store']);
     Route::get('chat', [ChatController::class, 'show']);
 });
