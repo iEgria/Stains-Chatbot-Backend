@@ -23,12 +23,14 @@ class ChatController extends Controller
 
     public function store(Request $request)
     {
-        // return $this->answer($request->clientId, $request->message);
-
         return response()->json([
             'data' => [
                 'chat' => $this->sendChat($request->clientId, $request->message,  true),
-                'jawaban' => $this->answer($request->clientId, $request->message)
+                // Jika chat tidak dipahami
+                // 'jawaban' => $this->sendChat($request->clientId, 'Maaf, saya tidak dapat memahami pertanyaan kakak nih.')
+                // Jika barang nggak ada
+                'jawaban' => $this->sendChat($request->clientId, 'Maaf, barang yang kakak cari mungkin masih belum tersedia.')
+                // 'jawaban' => $this->answer($request->clientId, $request->message)
             ]
         ]);
     }
